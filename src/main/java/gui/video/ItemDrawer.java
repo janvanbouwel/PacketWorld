@@ -120,9 +120,40 @@ public class ItemDrawer extends Drawer {
         g.setColor(pc);
         g.fillRect(i * cellWidth + horizontalOffset + cellWidth / 4, j * cellWidth + verticalOffset + cellWidth / 4, cellWidth / 2,
                    cellWidth / 2);
+        drawColorName(pc, i, j);
+
         this.logger.fine("packet drawn");
     }
 
+    private void drawColorName(Color color, int x, int y) {
+        int hr = horizontalOffset + x * cellWidth;
+        int vr = verticalOffset + y * cellWidth;
+
+
+        if(color.equals(Color.blue)) g.setColor(Color.white);
+        else g.setColor(Color.BLACK);
+
+        var cName = colorToString(color);
+
+        int fontSize = cellWidth / (2 + (int) (cName.length() * 1.25));
+        if (fontSize > 30) {
+            fontSize = 30;
+        } else if (fontSize < 8) {
+            fontSize = 8;
+        }
+
+        Font font = new Font("Courier", Font.BOLD, fontSize);
+        g.setFont(font);
+        g.drawString(cName, hr + 6 * cellWidth / 15, vr + 9 * cellWidth / 15);
+    }
+
+    private String colorToString(Color color) {
+        if(color.equals(Color.red)) return "R";
+        if(color.equals(Color.blue)) return "B";
+        if(color.equals(Color.green)) return "G";
+        if(color.equals(Color.yellow)) return "Y";
+        return "";
+    }
 
     private int[] generateXPointsOctagon(double distanceCenter, double center) {
         double[] points = {center - distanceCenter / 2.0, center + distanceCenter / 2.0,
@@ -314,6 +345,8 @@ public class ItemDrawer extends Drawer {
             j * cellWidth + verticalOffset + 1 + cellWidth / 8, 
             1 + 3 * cellWidth / 4, 
             1 + 3 * cellWidth / 4);
+        drawColorName(dc, i, j);
+
         this.logger.fine("destination drawn");
     }
 
