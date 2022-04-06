@@ -136,11 +136,11 @@ public class ItemDrawer extends Drawer {
         var cName = colorToString(color);
 
         int fontSize = cellWidth / (2 + (int) (cName.length() * 1.25));
-        if (fontSize > 30) {
-            fontSize = 30;
-        } else if (fontSize < 8) {
-            fontSize = 8;
-        }
+//        if (fontSize > 30) {
+//            fontSize = 30;
+//        } else if (fontSize < 8) {
+//            fontSize = 8;
+//        }
 
         Font font = new Font("Courier", Font.BOLD, fontSize);
         g.setFont(font);
